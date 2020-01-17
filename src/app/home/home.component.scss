@@ -1,0 +1,29 @@
+#top-bar {
+  height: 50px;
+  background-color: red;
+}
+#container {
+  width: 100%;
+  height: calc(100% - 50px);
+  #side-bar {
+    vertical-align: top;
+    width: 197px;
+    height: 100%;
+    display: inline-block;
+    background-color: blue;
+  }
+  #side-bar-divider {
+    vertical-align: top;
+    width: 6px;
+    height: 100%;
+    display: inline-block;
+    background-color: black;
+  }
+  #main-panel {
+    vertical-align: top;
+    height: 100%;
+    width: calc(100% - 206px);
+    display: inline-block;
+    background-color: green;
+  }
+}
