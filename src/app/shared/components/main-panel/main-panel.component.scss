@@ -18,7 +18,7 @@
       border-left: solid 1px black;
       border-right: solid 1px black;
       border-top: solid 1px black;
-      border-radius: 2px 2px 0 0 ;
+      border-radius: 2px 2px 0 0;
     }
   }
   .request-data-container,
@@ -28,6 +28,23 @@
       .header {
         display: inline-block;
         width: max-content;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
+    .header-container {
+      .header-enable {
+        width: 30px;
+      }
+      .header-key {
+        width: calc(20% - 10px);
+      }
+      .header-value {
+        width: calc(30% - 10px);
+      }
+      .header-description {
+        width: calc(50% - 10px);
       }
     }
   }
