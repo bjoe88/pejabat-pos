@@ -1,5 +1,34 @@
-.button {
-  display: inline-block;
-  width: 70px;
-  text-align: center;
+.container {
+  border-top: solid 1px black;
+  .button-container {
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-bottom: solid 1px black;
+    .button {
+      &.selected {
+        margin-bottom: -1px;
+        border-bottom: solid 1px white;
+      }
+      display: inline-block;
+      margin: 0 2px;
+      padding: 5px;
+      width: 70px;
+      text-align: center;
+      border-left: solid 1px black;
+      border-right: solid 1px black;
+      border-top: solid 1px black;
+      border-radius: 2px 2px 0 0 ;
+    }
+  }
+  .request-data-container,
+  .response-data-container {
+    padding: 5px 10px;
+    .header-container {
+      .header {
+        display: inline-block;
+        width: max-content;
+      }
+    }
+  }
 }

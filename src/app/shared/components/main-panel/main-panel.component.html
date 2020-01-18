@@ -9,21 +9,32 @@
   </select>
   <input type="text">
   <button>Send</button>
-  <hr>
-  <div class="request-container">
-    <div class="button">Header</div>
-    <div class="button">Params</div>
-    <div class="button">Body</div>
-    <div class="button">Cookie</div>
-    <div>Request Container</div>
-  </div>
-  <hr>
-  <div class="response-container">
-    <div class="request-container">
-      <div class="button">Header</div>
-      <div class="button">Cookies</div>
+  <div class="container request-container">
+    <div class="button-container">
+      <div class="button selected">Header</div>
+      <div class="button">Params</div>
       <div class="button">Body</div>
-      <div>response container</div>
+      <div class="button">Cookie</div>
     </div>
+    <div class="request-data-container">
+      Request Container
+      <br>
+      <div class="header-container">
+        <div class="header header-enable">&nbsp;</div>
+        <div class="header header-key">Key</div>
+        <div class="header header-value">Value</div>
+        <div class="header header-description">Description</div>
+      </div>
+    </div>
+  </div>
+  <div class="container response-container">
+    <div class="request-container">
+      <div class="button-container">
+        <div class="button selected">Header</div>
+        <div class="button">Cookies</div>
+        <div class="button">Body</div>
+      </div>
+    </div>
+    <div class="response-data-container">response container</div>
   </div>
 </div>
