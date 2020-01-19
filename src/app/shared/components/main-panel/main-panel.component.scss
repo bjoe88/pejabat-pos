@@ -31,20 +31,37 @@
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
+        padding: 5px;
       }
     }
-    .header-container {
-      .header-enable {
-        width: 30px;
+    .header-container,.row-container {
+      .header-enable,.row-enable {
+        display: inline-block;
+        width: 60px;
       }
-      .header-key {
-        width: calc(20% - 10px);
+      .header-key, .row-key {
+        display: inline-block;
+        width: calc(20% - 20px);
+        input {
+          width: calc(100% - 10px);
+          margin: 5px;
+        }
       }
-      .header-value {
-        width: calc(30% - 10px);
+      .header-value, .row-value {
+        display: inline-block;
+        width: calc(30% - 20px);
+        input {
+          width: calc(100% - 10px);
+          margin: 5px;
+        }
       }
-      .header-description {
-        width: calc(50% - 10px);
+      .header-description, .row-description {
+        display: inline-block;
+        width: calc(50% - 20px);
+        input {
+          width: calc(100% - 10px);
+          margin: 5px;
+        }
       }
     }
   }
