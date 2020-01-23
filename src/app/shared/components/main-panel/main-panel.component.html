@@ -11,33 +11,27 @@
   <button>Send</button>
   <div class="container request-container">
     <div class="button-container">
-      <div class="button selected">Header</div>
-      <div class="button">Params</div>
-      <div class="button">Body</div>
-      <div class="button">Cookie</div>
+      <div (click)="pickHeader('header')"  [ngClass]="requestHeaderButtonClass('header')">Header</div>
+      <div (click)="pickHeader('params')" [ngClass]="requestHeaderButtonClass('params')">Params</div>
+      <div (click)="pickHeader('body')" [ngClass]="requestHeaderButtonClass('body')">Body</div>
+      <div (click)="pickHeader('cookie')" [ngClass]="requestHeaderButtonClass('cookie')">Cookie</div>
     </div>
     <div class="request-data-container">
-      Request Container
-      <br>
-      <div class="header-container">
-        <div class="header header-enable">&nbsp;</div>
-        <div class="header header-key">Key</div>
-        <div class="header header-value">Value</div>
-        <div class="header header-description">Description</div>
-      </div>
-      <div class="row-container">
+      <div class="row-container" *ngFor="let item of getRequestData()">
         <div class="row row-enable">
-          <button>Enable</button>
+          <fa-icon class="icon" [icon]="trash"></fa-icon>
+          <fa-icon *ngIf="item.enable" class="icon" [icon]="toggleOn"></fa-icon>
+          <fa-icon *ngIf="!item.enable" class="icon" [icon]="toggleOff"></fa-icon>
         </div>
         <div class="row row-key">
-          <input type="text" placeholder="Key">
+          <input type="text" placeholder="Key" [(ngModel)]="item.key">
         </div>
         <div class="row row-value">
-          <input type="text" placeholder="Value">
+          <input type="text" placeholder="Value" [(ngModel)]="item.value">
         </div>
-        <div class="row row-description">
-          <input type="text" placeholder="Description">
-        </div>
+      </div>
+      <div class="row-container">
+        <button>Add</button>
       </div>
     </div>
   </div>

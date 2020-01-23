@@ -10,6 +10,7 @@
         margin-bottom: -1px;
         border-bottom: solid 1px white;
       }
+      cursor: pointer;
       display: inline-block;
       margin: 0 2px;
       padding: 5px;
@@ -39,29 +40,28 @@
         display: inline-block;
         width: 60px;
       }
+      .row {
+        .icon {
+          font-size: 23px;
+          margin: 0 2px;
+        }
+        input, input:focus {
+          width: calc(100% - 20px);
+          padding: 10px 5px;
+          border: solid 1px grey;
+          border-left: none;
+          border-right: none;
+          margin: 5px;
+          outline: none;
+        }
+      }
       .header-key, .row-key {
         display: inline-block;
-        width: calc(20% - 20px);
-        input {
-          width: calc(100% - 10px);
-          margin: 5px;
-        }
+        width: calc(50% - 30px);
       }
       .header-value, .row-value {
         display: inline-block;
-        width: calc(30% - 20px);
-        input {
-          width: calc(100% - 10px);
-          margin: 5px;
-        }
-      }
-      .header-description, .row-description {
-        display: inline-block;
-        width: calc(50% - 20px);
-        input {
-          width: calc(100% - 10px);
-          margin: 5px;
-        }
+        width: calc(50% - 30px);
       }
     }
   }
