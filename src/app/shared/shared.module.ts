@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { MainPanelComponent } from './components/main-panel/main-panel.component';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @NgModule({
   declarations: [PageNotFoundComponent,
     WebviewDirective,
@@ -16,6 +17,7 @@ import { MainPanelComponent } from './components/main-panel/main-panel.component
     MainPanelComponent],
   imports: [CommonModule,
     TranslateModule,
+    FontAwesomeModule,
     FormsModule],
   exports: [TranslateModule,
     WebviewDirective,
