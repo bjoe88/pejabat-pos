@@ -8,7 +8,7 @@
     <option value="options">OPTIONS</option>
   </select>
   <input type="text">
-  <button>Send</button>
+  <button (click)="sendRequest()">Send</button>
   <div class="container request-container">
     <div class="button-container">
       <div (click)="pickHeader('header')"  [ngClass]="requestHeaderButtonClass('header')">Header</div>

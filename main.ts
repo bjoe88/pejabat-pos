@@ -1,7 +1,7 @@
 import { app, BrowserWindow, screen } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
-
+import * as request from "./src/main-processor/service/request";
 let win: BrowserWindow = null;
 const args = process.argv.slice(1),
     serve = args.some(val => val === '--serve');
@@ -74,7 +74,7 @@ try {
       createWindow();
     }
   });
-
+  request.start();
 } catch (e) {
   // Catch Error
   // throw e;

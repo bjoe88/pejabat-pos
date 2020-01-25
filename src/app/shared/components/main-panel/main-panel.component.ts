@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { faTrash, faToggleOff, faToggleOn } from '@fortawesome/free-solid-svg-icons';
+import { RequestService } from '../../services/request.service';
 
 @Component({
   selector: 'app-main-panel',
@@ -59,12 +60,12 @@ export class MainPanelComponent implements OnInit {
     response: {}
   }
 
-  constructor() { }
+  constructor(private request: RequestService) { }
 
   ngOnInit() {
   }
 
-  pickHeader(header:string) {
+  pickHeader(header: string) {
     this.deselectAllHeader();
     this.requestHeaderButtonClassData[header].selected = true;
     this.requestSelectedHeader = header;
@@ -80,9 +81,11 @@ export class MainPanelComponent implements OnInit {
   requestHeaderButtonClass(header: string) {
     return this.requestHeaderButtonClassData[header];
   }
+
   getRequestData() {
     return this.data.request[this.requestSelectedHeader];
   }
+
   addRequestElement() {
     let requestData = this.getRequestData();
     requestData.push({
@@ -98,5 +101,13 @@ export class MainPanelComponent implements OnInit {
       arr.splice(index, 1);
     }
 
+  }
+
+  async sendRequest() {
+    console.log('asd');
+    this.request.test('https://www.google.com')
+      // .subscribe((data) => {
+      //   console.log({ data })
+      // });
   }
 }

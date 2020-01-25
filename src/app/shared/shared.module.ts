@@ -10,12 +10,15 @@ import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { MainPanelComponent } from './components/main-panel/main-panel.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [PageNotFoundComponent,
     WebviewDirective,
     SideBarComponent,
     MainPanelComponent],
   imports: [CommonModule,
+    HttpClientModule,
     TranslateModule,
     FontAwesomeModule,
     FormsModule],
