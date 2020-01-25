@@ -17,11 +17,14 @@
       <div (click)="pickHeader('cookie')" [ngClass]="requestHeaderButtonClass('cookie')">Cookie</div>
     </div>
     <div class="request-data-container">
+      <div class="row-container">
+        <button (click)="addRequestElement()">Add</button>
+      </div>
       <div class="row-container" *ngFor="let item of getRequestData()">
         <div class="row row-enable">
-          <fa-icon class="icon" [icon]="trash"></fa-icon>
-          <fa-icon *ngIf="item.enable" class="icon" [icon]="toggleOn"></fa-icon>
-          <fa-icon *ngIf="!item.enable" class="icon" [icon]="toggleOff"></fa-icon>
+          <fa-icon class="icon" (click)="removeElement(getRequestData(),item)" [icon]="trash"></fa-icon>
+          <fa-icon *ngIf="item.enable" class="icon" (click)="item.enable = !item.enable" [icon]="toggleOn"></fa-icon>
+          <fa-icon *ngIf="!item.enable" class="icon" (click)="item.enable = !item.enable" [icon]="toggleOff"></fa-icon>
         </div>
         <div class="row row-key">
           <input type="text" placeholder="Key" [(ngModel)]="item.key">
@@ -29,9 +32,6 @@
         <div class="row row-value">
           <input type="text" placeholder="Value" [(ngModel)]="item.value">
         </div>
-      </div>
-      <div class="row-container">
-        <button>Add</button>
       </div>
     </div>
   </div>

@@ -83,5 +83,20 @@ export class MainPanelComponent implements OnInit {
   getRequestData() {
     return this.data.request[this.requestSelectedHeader];
   }
+  addRequestElement() {
+    let requestData = this.getRequestData();
+    requestData.push({
+      enable: true,
+      key: '',
+      value: ''
+    });
+  }
 
+  removeElement(arr, element) {
+    const index = arr.indexOf(element, 0);
+    if (index > -1) {
+      arr.splice(index, 1);
+    }
+
+  }
 }
