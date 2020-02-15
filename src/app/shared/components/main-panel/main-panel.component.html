@@ -7,14 +7,14 @@
     <option value="delete">DELETE</option>
     <option value="options">OPTIONS</option>
   </select>
-  <input type="text">
+  <input type="text" [(ngModel)]="requestUrl">
   <button (click)="sendRequest()">Send</button>
   <div class="container request-container">
     <div class="button-container">
-      <div (click)="pickHeader('header')"  [ngClass]="requestHeaderButtonClass('header')">Header</div>
-      <div (click)="pickHeader('params')" [ngClass]="requestHeaderButtonClass('params')">Params</div>
-      <div (click)="pickHeader('body')" [ngClass]="requestHeaderButtonClass('body')">Body</div>
-      <div (click)="pickHeader('cookie')" [ngClass]="requestHeaderButtonClass('cookie')">Cookie</div>
+      <div (click)="pickRequest('header')" [ngClass]="requestTabButtonClass('header')">Header</div>
+      <div (click)="pickRequest('params')" [ngClass]="requestTabButtonClass('params')">Params</div>
+      <div (click)="pickRequest('body')" [ngClass]="requestTabButtonClass('body')">Body</div>
+      <div (click)="pickRequest('cookie')" [ngClass]="requestTabButtonClass('cookie')">Cookie</div>
     </div>
     <div class="request-data-container">
       <div class="row-container">
@@ -38,11 +38,20 @@
   <div class="container response-container">
     <div class="request-container">
       <div class="button-container">
-        <div class="button selected">Header</div>
-        <div class="button">Cookies</div>
-        <div class="button">Body</div>
+        <div (click)="pickResponse('body')" [ngClass]="responseTabButtonClass('body')">Body</div>
+        <div (click)="pickResponse('header')" [ngClass]="responseTabButtonClass('header')">Header</div>
+        <div (click)="pickResponse('cookie')" [ngClass]="responseTabButtonClass('cookie')">Cookie</div>
       </div>
     </div>
-    <div class="response-data-container">response container</div>
+    <div class="response-data-container">
+      <div class="response-body-container">
+        <button>Raw</button>
+        <button>Preview</button>
+        <!-- <div class="response-body-data">{{responseBodyData}}</div> -->
+        <div class="response-body-data" [innerHTML]="responseBodyData"></div>
+      </div>
+      <div class="response-header-container">header</div>
+      <div class="response-cookie-container">cookie</div>
+    </div>
   </div>
 </div>

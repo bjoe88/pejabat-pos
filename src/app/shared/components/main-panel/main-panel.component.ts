@@ -9,7 +9,8 @@ import { RequestService } from '../../services/request.service';
   styleUrls: ['./main-panel.component.scss']
 })
 export class MainPanelComponent implements OnInit {
-  requestHeaderButtonClassData = {
+  requestUrl: string = 'https://www.kodkraf.com';
+  requestTabButtonClassData = {
     header: {
       button: true,
       selected: true
@@ -27,7 +28,23 @@ export class MainPanelComponent implements OnInit {
       selected: false
     }
   };
-  requestSelectedHeader = 'header';
+  responseTabButtonClassData = {
+    body: {
+      button: true,
+      selected: true
+    },
+    header: {
+      button: true,
+      selected: false
+    },
+    cookie: {
+      button: true,
+      selected: false
+    }
+  };
+  requestSelectedHeader: string  = 'header';
+  responseSelectedHeader: string  = 'body';
+  responseBodyData: string = '';
   trash = faTrash;
   toggleOn = faToggleOn;
   toggleOff = faToggleOff;
@@ -65,21 +82,36 @@ export class MainPanelComponent implements OnInit {
   ngOnInit() {
   }
 
-  pickHeader(header: string) {
-    this.deselectAllHeader();
-    this.requestHeaderButtonClassData[header].selected = true;
+  pickRequest(header: string) {
+    this.deselectAllRequest();
+    this.requestTabButtonClassData[header].selected = true;
     this.requestSelectedHeader = header;
   }
-
-  deselectAllHeader() {
-    this.requestHeaderButtonClassData.header.selected = false;
-    this.requestHeaderButtonClassData.params.selected = false;
-    this.requestHeaderButtonClassData.body.selected = false;
-    this.requestHeaderButtonClassData.cookie.selected = false;
+  pickResponse(header: string) {
+    this.deselectAllResponse();
+    this.responseTabButtonClassData[header].selected = true;
+    this.responseSelectedHeader = header;
   }
 
-  requestHeaderButtonClass(header: string) {
-    return this.requestHeaderButtonClassData[header];
+  deselectAllRequest() {
+    this.requestTabButtonClassData.header.selected = false;
+    this.requestTabButtonClassData.params.selected = false;
+    this.requestTabButtonClassData.body.selected = false;
+    this.requestTabButtonClassData.cookie.selected = false;
+  }
+
+  deselectAllResponse() {
+    this.responseTabButtonClassData.body.selected = false;
+    this.responseTabButtonClassData.header.selected = false;
+    this.responseTabButtonClassData.cookie.selected = false;
+  }
+
+  requestTabButtonClass(header: string) {
+    return this.requestTabButtonClassData[header];
+  }
+
+  responseTabButtonClass(header: string) {
+    return this.responseTabButtonClassData[header];
   }
 
   getRequestData() {
@@ -104,10 +136,13 @@ export class MainPanelComponent implements OnInit {
   }
 
   async sendRequest() {
-    console.log('asd');
-    this.request.test('https://www.google.com')
-      // .subscribe((data) => {
-      //   console.log({ data })
-      // });
+    console.log(this.requestUrl);
+    let data: any = await this.request.test(this.requestUrl)
+    console.log({ data });
+    this.responseBodyData = data.body;
+    console.log(data.body);
+    // .subscribe((data) => {
+    //   console.log({ data })
+    // });
   }
 }

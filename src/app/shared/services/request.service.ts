@@ -9,11 +9,14 @@ export class RequestService {
   constructor(private http: HttpClient) { }
 
   test(requestData) {
-    ipcRenderer.on('asynchronous-reply', (event, arg) => {
-      console.log(arg) // prints "pong"
-      console.log(arg.body) // prints "pong"
-      console.log(arg.response.headers) // prints "pong"
+    return new Promise((resolve, reject) => {
+      ipcRenderer.on('asynchronous-reply', (event, arg) => {
+        // console.log(arg) // prints "pong"
+        // console.log(arg.body) // prints "pong"
+        // console.log(arg.response.headers) // prints "pong"
+        resolve(arg)
+      })
+      ipcRenderer.send('asynchronous-message', requestData)
     })
-    ipcRenderer.send('asynchronous-message', requestData)
   }
 }
