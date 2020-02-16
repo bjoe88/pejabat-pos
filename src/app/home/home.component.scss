@@ -21,7 +21,7 @@
   }
   #main-panel {
     vertical-align: top;
-    height: 100%;
+    height: calc(100% - 1px);
     width: calc(100% - 206px);
     display: inline-block;
   }

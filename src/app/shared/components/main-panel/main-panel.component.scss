@@ -1,5 +1,6 @@
 .container {
   border-top: solid 1px black;
+  height: 100%;
   .button-container {
     padding-top: 10px;
     padding-left: 10px;
@@ -35,8 +36,10 @@
         padding: 5px;
       }
     }
-    .header-container,.row-container {
-      .header-enable,.row-enable {
+    .header-container,
+    .row-container {
+      .header-enable,
+      .row-enable {
         display: inline-block;
         width: 60px;
       }
@@ -46,7 +49,8 @@
           margin: 0 2px;
           cursor: pointer;
         }
-        input, input:focus {
+        input,
+        input:focus {
           width: calc(100% - 20px);
           padding: 10px 5px;
           border: solid 1px grey;
@@ -56,13 +60,28 @@
           outline: none;
         }
       }
-      .header-key, .row-key {
+      .header-key,
+      .row-key {
         display: inline-block;
         width: calc(50% - 30px);
       }
-      .header-value, .row-value {
+      .header-value,
+      .row-value {
         display: inline-block;
         width: calc(50% - 30px);
+      }
+    }
+  }
+  .response-container {
+    background-color: red;
+    .response-data-container {
+      height: calc(100% - 50px);
+      .response-body-container {
+        height: 100%;
+        .iframe-response {
+          height: calc(100% - 24px);
+          width: 100%;
+        }
       }
     }
   }

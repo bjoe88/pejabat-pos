@@ -1,15 +1,17 @@
 <div class="container">
-  <select name="" id="">
-    <option value="get">GET</option>
-    <option value="post">POST</option>
-    <option value="put">PUT</option>
-    <option value="patch">PATCH</option>
-    <option value="delete">DELETE</option>
-    <option value="options">OPTIONS</option>
-  </select>
-  <input type="text" [(ngModel)]="requestUrl">
-  <button (click)="sendRequest()">Send</button>
-  <div class="container request-container">
+  <div #requestUrlContainer class="request-url-container">
+    <select name="" id="">
+      <option value="get">GET</option>
+      <option value="post">POST</option>
+      <option value="put">PUT</option>
+      <option value="patch">PATCH</option>
+      <option value="delete">DELETE</option>
+      <option value="options">OPTIONS</option>
+    </select>
+    <input type="text" [(ngModel)]="requestUrl">
+    <button (click)="sendRequest()">Send</button>
+  </div>
+  <div #requestContainer class="request-container">
     <div class="button-container">
       <div (click)="pickRequest('header')" [ngClass]="requestTabButtonClass('header')">Header</div>
       <div (click)="pickRequest('params')" [ngClass]="requestTabButtonClass('params')">Params</div>
@@ -35,7 +37,7 @@
       </div>
     </div>
   </div>
-  <div class="container response-container">
+  <div #responseContainer class="response-container">
     <div class="request-container">
       <div class="button-container">
         <div (click)="pickResponse('body')" [ngClass]="responseTabButtonClass('body')">Body</div>
@@ -47,11 +49,10 @@
       <div class="response-body-container">
         <button>Raw</button>
         <button>Preview</button>
-        <!-- <div class="response-body-data">{{responseBodyData}}</div> -->
-        <div class="response-body-data" [innerHTML]="responseBodyData"></div>
+        <iframe class="iframe-response" [src]="responseUrl"></iframe>
       </div>
-      <div class="response-header-container">header</div>
-      <div class="response-cookie-container">cookie</div>
+      <!-- <div class="response-header-container">header</div>
+      <div class="response-cookie-container">cookie</div> -->
     </div>
   </div>
 </div>

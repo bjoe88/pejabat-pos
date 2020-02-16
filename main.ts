@@ -4,7 +4,7 @@ import * as url from 'url';
 import * as request from "./src/main-processor/service/request";
 let win: BrowserWindow = null;
 const args = process.argv.slice(1),
-    serve = args.some(val => val === '--serve');
+  serve = args.some(val => val === '--serve');
 
 function createWindow(): BrowserWindow {
 
@@ -18,6 +18,7 @@ function createWindow(): BrowserWindow {
     width: size.width,
     height: size.height,
     webPreferences: {
+      webSecurity: false,
       nodeIntegration: true,
       allowRunningInsecureContent: (serve) ? true : false,
     },
