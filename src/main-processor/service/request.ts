@@ -1,14 +1,13 @@
 import { app } from 'electron';
 import { ipcMain } from 'electron';
 import * as fs from 'fs'
-import * as request from 'request';
+import got from 'got'
 export function start() {
-  ipcMain.on('asynchronous-message', (event, arg) => {
-    request(arg, function (err, response, body) {
-      const url = app.getPath('temp') + '\\' + (new Date()).getTime() + '.html'
-      fs.writeFileSync(url, body, { encoding: 'utf8' })
-      console.log(url)
-      event.reply('asynchronous-reply', { err, response, url })
-    })
+  ipcMain.on('asynchronous-message', async (event, arg) => {
+    let response = await got(arg)
+    const prettyPath = app.getPath('temp') + '\\' + (new Date()).getTime() + '.html'
+    fs.writeFileSync(prettyPath, response.body, { encoding: 'utf8' })
+    // console.log(prettyPath)
+    event.reply('asynchronous-reply', { response, prettyPath, body: response.body })
   })
 }

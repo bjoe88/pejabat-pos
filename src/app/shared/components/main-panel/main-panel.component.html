@@ -46,13 +46,21 @@
       </div>
     </div>
     <div class="response-data-container">
-      <div class="response-body-container">
-        <button>Raw</button>
-        <button>Preview</button>
-        <iframe class="iframe-response" [src]="responseUrl"></iframe>
+      <div class="response-body-container" *ngIf="responseSelectedHeader == 'body'">
+        <button (click)="pickResponseBody('preview')" [ngClass]="responseBodyTabButtonClass('preview')">Preview</button>
+        <button (click)="pickResponseBody('pretty')" [ngClass]="responseBodyTabButtonClass('pretty')">Pretty</button>
+        <button (click)="pickResponseBody('raw')" [ngClass]="responseBodyTabButtonClass('raw')">Raw</button>
+        <div class="response-body-preview-container" *ngIf="responseBodySelectedTab == 'preview'">
+          <iframe class="iframe-response" [src]="responseUrl"></iframe>
+        </div>
+        <div class="response-body-pretty-container" *ngIf="responseBodySelectedTab == 'pretty'" id="container" >
+        </div>
+        <div class="response-body-raw-container" *ngIf="responseBodySelectedTab == 'raw'">
+          {{ responseBodyRaw }}
+        </div>
       </div>
-      <!-- <div class="response-header-container">header</div>
-      <div class="response-cookie-container">cookie</div> -->
+      <div class="response-header-container" *ngIf="responseSelectedHeader == 'header'"></div>
+      <div class="response-cookie-container" *ngIf="responseSelectedHeader == 'cookie'"></div>
     </div>
   </div>
 </div>

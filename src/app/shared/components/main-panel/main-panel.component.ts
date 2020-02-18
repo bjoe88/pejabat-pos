@@ -5,6 +5,10 @@ import { RequestService } from '../../services/request.service';
 
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
+declare var monaco: any
+
+
+
 @Component({
   selector: 'app-main-panel',
   templateUrl: './main-panel.component.html',
@@ -30,6 +34,7 @@ export class MainPanelComponent implements OnInit, AfterViewInit {
       selected: false
     }
   };
+
   responseTabButtonClassData = {
     body: {
       button: true,
@@ -44,8 +49,26 @@ export class MainPanelComponent implements OnInit, AfterViewInit {
       selected: false
     }
   };
+  responseBodyTabButtonClassData = {
+    preview: {
+      'response-body-tab': true,
+      'response-body-tab-preview': true,
+      selected: true
+    },
+    pretty: {
+      'response-body-tab': true,
+      'response-body-tab-pretty': true,
+      selected: false
+    },
+    raw: {
+      'response-body-tab': true,
+      'response-body-tab-raw': true,
+      selected: false
+    }
+  };
   requestSelectedHeader: string = 'header';
   responseSelectedHeader: string = 'body';
+  responseBodySelectedTab: string = 'preview';
   responseBodyData: string = '';
   trash = faTrash;
   toggleOn = faToggleOn;
@@ -79,6 +102,8 @@ export class MainPanelComponent implements OnInit, AfterViewInit {
     response: {}
   }
   responseUrl: SafeResourceUrl = '';
+  responseBodyPretty: string = '';
+  responseBodyRaw: string = '';
 
   @ViewChild('requestUrlContainer', { static: false }) requestUrlEV: ElementRef;
   @ViewChild('requestContainer', { static: false }) requestEV: ElementRef;
@@ -96,7 +121,7 @@ export class MainPanelComponent implements OnInit, AfterViewInit {
     const requestHeight = this.requestEV.nativeElement.offsetHeight
     const requestUrlHeight = this.requestUrlEV.nativeElement.offsetHeight
     const newHeight = (parentHeight - requestHeight - requestUrlHeight - 2)
-    if(newHeight !== this.responseHeight) {
+    if (newHeight !== this.responseHeight) {
       this.responseHeight = newHeight
       this.responseEV.nativeElement.style.height = newHeight + 'px'
     }
@@ -124,6 +149,12 @@ export class MainPanelComponent implements OnInit, AfterViewInit {
     this.responseSelectedHeader = header;
   }
 
+  pickResponseBody(tab: string) {
+    this.deselectAllResponseBody();
+    this.responseBodyTabButtonClassData[tab].selected = true;
+    this.responseBodySelectedTab = tab;
+  }
+
   deselectAllRequest() {
     this.requestTabButtonClassData.header.selected = false;
     this.requestTabButtonClassData.params.selected = false;
@@ -137,12 +168,22 @@ export class MainPanelComponent implements OnInit, AfterViewInit {
     this.responseTabButtonClassData.cookie.selected = false;
   }
 
+  deselectAllResponseBody() {
+    this.responseBodyTabButtonClassData.preview.selected = false;
+    this.responseBodyTabButtonClassData.pretty.selected = false;
+    this.responseBodyTabButtonClassData.raw.selected = false;
+  }
+
   requestTabButtonClass(header: string) {
     return this.requestTabButtonClassData[header];
   }
 
   responseTabButtonClass(header: string) {
     return this.responseTabButtonClassData[header];
+  }
+
+  responseBodyTabButtonClass(header: string) {
+    return this.responseBodyTabButtonClassData[header];
   }
 
   getRequestData() {
@@ -170,15 +211,8 @@ export class MainPanelComponent implements OnInit, AfterViewInit {
     console.log(this.requestUrl);
     let data: any = await this.request.test(this.requestUrl)
     console.log({ data });
-    // this.sanitizer.sanitize(SecurityContext.URL, url)
-    this.responseUrl = this.sanitizer.bypassSecurityTrustResourceUrl('file:\\\\' + data.url);
-    // this.responseBodyData = data.body;
-    // console.log(data.body);
-    // .subscribe((data) => {
-    //   console.log({ data })
-    // });
+    this.responseUrl = this.sanitizer.bypassSecurityTrustResourceUrl('file:\\\\' + data.prettyPath);
+    this.responseBodyPretty = data.body
+    this.responseBodyRaw = data.response.body
   }
 }
-
-// file://C:\Users\bjoe88\AppData\Local\Temp/1581783907382.html
-// file://C:\Users\bjoe88\AppData\Local\Temp\7b195b8f-e3c7-4a9c-a343-dc0990f01d4d-response.html

@@ -93,6 +93,7 @@
     "@fortawesome/angular-fontawesome": "0.5.0",
     "@fortawesome/fontawesome-svg-core": "1.2.26",
     "@fortawesome/free-solid-svg-icons": "5.12.0",
-    "request": "2.88.0"
+    "got": "10.5.7",
+    "monaco-editor": "0.20.0"
   }
 }

@@ -1,6 +1,7 @@
 .container {
   border-top: solid 1px black;
   height: 100%;
+  overflow: hidden;
   .button-container {
     padding-top: 10px;
     padding-left: 10px;
@@ -73,14 +74,31 @@
     }
   }
   .response-container {
-    background-color: red;
     .response-data-container {
       height: calc(100% - 50px);
+      .response-body-tab {
+        border: solid 1px grey;
+        background-color: white;
+        margin-top: 10px;
+        padding: 5px 10px;
+        cursor: pointer;
+        outline: none;
+
+        &.selected {
+          background-color: #aaaaaa;
+        }
+      }
       .response-body-container {
         height: 100%;
-        .iframe-response {
-          height: calc(100% - 24px);
-          width: 100%;
+        .response-body-preview-container {
+          height: calc(100% - 46px);
+          width: calc(100% - 12px);
+          .iframe-response {
+            height: 100%;
+            width: 100%;
+            border: solid 1px #dddddd;
+            margin: 10px 5px;
+          }
         }
       }
     }
